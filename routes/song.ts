@@ -112,4 +112,21 @@ module.exports = {
     })
 
   },
+
+  async ['/detail']({ req, res, request, UrlSaver }) {
+    const { cid,id } = req.query;
+    // if (!cid||!id) {
+    //   return res.send({
+    //     result: 500,
+    //     errMsg: '搜啥呢？',
+    //   })
+    // }
+    const songRes = await request.send(`http://m.music.migu.cn/migu/remoting/cms_detail_tag?cpid=${cid}`);
+
+    res.send({
+      result: 100,
+      data: songRes,
+    })
+
+  },
 };
